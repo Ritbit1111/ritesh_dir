@@ -7,7 +7,8 @@
 \institute[IITB]{Electrical Engineering \\ IIT Bombay}
 \titlegraphic{\includegraphics[width=2cm]{logo}}
 
-%setbeamerfont{frametitle}{family=\rmfamily,series=\bfseries,size={\fontsize{32}{36}}}
+
+\newcommand\Fontvi{\fontsize{7.3}{7}\selectfont}
 %\setbeamerfont{frametitle}{size=\tiny}
 \begin{document}
 
@@ -15,9 +16,27 @@
 		\titlepage
 	\end{frame}
 
+	\begin{frame}
+	\frametitle{Motivation}
+%	\Fontvi
+		\begin{itemize}
+			\item Performance parameter extracted from I-V data set : Pmp, Voc, Isc, Rs, Rsh, FF are essential for diagnosing degradation of PV modules
+			\item Data driven technique can be applied to a \textbf{large amount} of data in a \textbf{short time} in contrast with traditional fitting of diode equation
+			\item Applied to 2.2 million real I-V datasets, took 3 hrs to complete
+			\item No requirement of device parameter to be input from the researcher
+			\item Applicable on non standard I-V datasets having \textbf{multiple steps}
+		\end{itemize}
+	\end{frame}
+
 	\begin{frame}[t]
-	\frametitle{Introduction Page}
-		First Page
+		\frametitle{Method}
+		\begin{enumerate}
+			\item \textbf{Fit smoothing spline} on raw I-V dataset (unequal spcaing in voltage) to get 500 equal spaced points in voltage
+			\item Regression performed on \textbf{moving window} of 5 consecutive I-V points
+			\item \textbf{Slope} of each regression line is used to identify either \textbf{step or MPPT}
+			\item \textbf{Identify the segments (steps)} : Steeper slope on the left than right
+			\item If step is found, I-V feature is extracted separately for both the parts
+		\end{enumerate}
 	\end{frame}
 
 \end{document}
